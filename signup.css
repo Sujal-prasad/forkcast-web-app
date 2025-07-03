@@ -1,0 +1,106 @@
+/* General Body Style */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Outer box */
+.box-area {
+    width: 900px;
+}
+
+/* Left side image and text box */
+.left-box {
+    text-align: center;
+    padding: 30px;
+}
+
+/* Image styling */
+.featured-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header text */
+.header-text p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Form inputs */
+.input-group input {
+    border: 1px solid #ced4da;
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #6c757d;
+    box-shadow: none;
+}
+
+/* Buttons */
+button.btn {
+    padding: 12px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+button.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Rounded Pill Buttons */
+button.rounded-pill {
+    border-radius: 50px;
+}
+
+/* Google logo + text inside button */
+button img {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* Checkbox alignment */
+.form-check-input {
+    margin-top: 2px;
+    margin-right: 8px;
+}
+
+/* Link styling */
+a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+a:hover {
+    color: #343a40;
+    text-decoration: underline;
+}
+
+/* Forgot password and extra rows */
+.forgot,
+.row small {
+    text-align: right;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .box-area {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .left-box {
+        display: none;
+    }
+}
