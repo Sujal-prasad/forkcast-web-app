@@ -85,7 +85,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Forgot password and extra rows */
+
 .forgot,
 .row small {
     text-align: right;
@@ -93,7 +93,7 @@ a:hover {
     font-size: 0.9rem;
 }
 
-/* Responsive tweaks */
+
 @media (max-width: 768px) {
     .box-area {
         width: 100%;
