@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("submit");
   const emailInput = document.querySelector('input[type="email"]');
   const passwordInput = document.querySelector('input[type="password"]');
-  const googleBtn = document.querySelector('button:has(img)'); // Matches your Google button
+  const googleBtn = document.querySelector('button:has(img)'); 
 
-  // ✉️ Email/Password Signup
+  
   submitBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     const email = emailInput.value;
@@ -39,24 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const user = userCredential.user;
       alert("Signed up successfully!");
       console.log("User:", user);
-      // Optional: Redirect user
-      // window.location.href = "dashboard.html";
+     
     } catch (error) {
       console.error(error);
       alert(" Error: " + error.message);
     }
   });
 
-  // 🔐 Google Signup
+ 
   googleBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      alert("✅ Signed in with Google!");
+      alert(" Signed in with Google!");
       console.log("User:", user);
-      // Optional: Redirect user
-      // window.location.href = "dashboard.html";
+     
     } catch (error) {
       console.error(error);
       alert(" Google Sign-In Error: " + error.message);
