@@ -1,8 +1,8 @@
-// login.js
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-// Firebase config
+
 const firebaseConfig = {
   apiKey: "AIzaSyC_sQRoRrS6XYweNkyFLlegR18vGjdFlMc",
   authDomain: "forkcast-3279d.firebaseapp.com",
@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: "1:1019775482409:web:a62f5e842aa02292287a38"
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // ✅ Simple redirection to home.html
+      
       window.location.href = "home.html";
     } catch (error) {
       alert("Login failed: " + error.message);
