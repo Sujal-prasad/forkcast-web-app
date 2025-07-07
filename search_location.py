@@ -19,7 +19,8 @@ def search_location(location_given):
                 "place_id": item.get("place_id", ""),
                 "price_level": item.get("price_level", None),
                 "total_reviews": item.get("user_ratings_total", None),
-                "opening_hours": item.get("opening_hours", {}).get("open_now", "Unknown")
+                "opening_hours": item.get("opening_hours", {}).get("open_now", "Unknown"),
+                "address":item.get("formatted_address", "")
             }
             data_for_model.append(data)
 

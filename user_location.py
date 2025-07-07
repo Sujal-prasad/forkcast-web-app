@@ -4,7 +4,7 @@ import urllib.parse
 
 def current_location_user(curr_address):
     address_encod=urllib.parse.quote(curr_address)
-    url=f"https://maps.gomaps.pro/maps/api/geocode/json?key=AlzaSyDsozy2c6S85G-i3pvZI_17xxm90J4xzDU&curr_address={address_encod}"
+    url=f"https://maps.gomaps.pro/maps/api/geocode/json?key=AlzaSyDsozy2c6S85G-i3pvZI_17xxm90J4xzDU&address={address_encod}"
     response=r.get(url)
     location=response.json()
     if location["status"]=="ok" and len(location["results"])>0:
