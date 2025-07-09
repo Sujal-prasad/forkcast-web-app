@@ -21,6 +21,7 @@ def search_location(location_given):
                 "total_reviews": item.get("user_ratings_total", None),
                 "opening_hours": item.get("opening_hours", {}).get("open_now", "Unknown"),
                 "address":item.get("formatted_address", "")
+                
             }
             data_for_model.append(data)
 
