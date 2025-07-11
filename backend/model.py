@@ -41,5 +41,7 @@ final_model.fit(X_train,y_train)
 print(final_model.score(X_test,y_test))
 print(final_model.score(X_train,y_train))
 
+#making a utility function for prediction when this file is imported somewhere
+
 
 final_model_file=joblib.dump(final_model,"final_model_file.pkl")
