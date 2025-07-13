@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from utlil.search_location import search_location
-from utlil.user_location import current_location_user
+from flask import Flask, render_template,request_started
 
-app=FastAPI()
+app=Flask(__name__)
+if(__name__=="__main__"):
+    app.run(debug=True)
