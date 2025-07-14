@@ -91,6 +91,9 @@ a:hover {
     color: #6c757d;
     font-size: 0.9rem;
 }
+#login-link{
+    color:blue;
+}
 
 
 @media (max-width: 768px) {

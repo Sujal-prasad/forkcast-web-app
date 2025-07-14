@@ -44,4 +44,5 @@ print(final_model.score(X_train,y_train))
 #making a utility function for prediction when this file is imported somewhere
 
 
-final_model_file=joblib.dump(final_model,"final_model_file.pkl")
+def model_predict(rating,price_level,distance_km,total_reviews):
+    return final_model.predict([[rating,price_level,distance_km,total_reviews]])
