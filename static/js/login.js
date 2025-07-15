@@ -6,7 +6,7 @@ import {
   signInWithPopup
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-// Your Firebase config
+
 const firebaseConfig = {
   apiKey: "AIzaSyC_sQRoRrS6XYweNkyFLlegR18vGjdFlMc",
   authDomain: "forkcast-3279d.firebaseapp.com",
@@ -16,7 +16,7 @@ const firebaseConfig = {
   appId: "1:1019775482409:web:a62f5e842aa02292287a38"
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email-login");
   const passwordInput = document.getElementById("password-login");
 
-  // Email/Password Login
+ 
   loginBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Google Sign-In
+  
   googleBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
