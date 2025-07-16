@@ -25,6 +25,13 @@ def login():
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+@app.route('/random')
+def random():
+    return render_template('random.html')
+
+@app.route('/trending')
+def trending():
+    return render_template("trending.html")
 @app.route('/process-address',methods=['post'])
 def process_address():
     

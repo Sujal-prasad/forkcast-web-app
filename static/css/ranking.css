@@ -3,3 +3,67 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
+ 
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .card-wrapper {
+      width: 71%;
+      
+      margin:40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+      align-items: center;
+    }
+    .card-wrapper:hover{
+        transition: all 0.3s ease;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-custom-card {
+      flex: 1 0 20%;
+      min-width: 200px;
+      max-width: 250px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    .card-custom-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-custom-card .card-body {
+      padding: 1rem;
+    }
+
+    .card-custom-card img.card-img-top {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin: 10px auto 0 auto;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+  

@@ -1,13 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>forkcast trending</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/trending.css') }}"
+    />
+  
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+          <img
+            src="{{ url_for('static', filename='images/forkcast.svg') }}"
+            alt="forkcast logo"
+            class="img-fluid"
+            style="max-height: 40px"
+          />
+        </a>
+        <div class="collapse navbar-collapse">
+          <div class="navbar-nav">
+            <a class="nav-link" href="https://github.com/Sujal-prasad">
+              <img
+                src="{{ url_for('static', filename='images/github.svg') }}"
+                alt="github"
+                class="img-fluid"
+                style="max-height: 40px"
+              />
+            </a>
+            <a
+              class="nav-link"
+              href="https://www.linkedin.com/in/sujal-prasad-baaa62230"
+            >
+              <img
+                src="{{ url_for('static', filename='images/linkedin.svg') }}"
+                alt="linkedin"
+                class="img-fluid"
+                style="max-height: 40px"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+   <div class="card-title">
+    <h2 style="text-align:center;">
+        #Trending this week
+    </h2>
+
+    <div class="card-wrapper">
+        <div class="card">
+        <img src="{{ url_for('static', filename='images/restaurant 11.svg') }}" class="card-img-top" alt="#1 trending"  class="img-fluid"/>
+        <div class="card-body">
+          <h5 class="card-title"># Trending number 1</h5>
+          <p class="card-text">restaurant name</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/restaurant 12.svg') }}" class="card-img-top" alt="#2 trending" class="img-fluid"/>
+        <div class="card-body">
+          <h5 class="card-title"># Trending number 2</h5>
+          <p class="card-text">restaurant name</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/restaurant 13.svg') }}" class="card-img-top" alt="#3 trending" class="img-fluid" />
+        <div class="card-body">
+          <h5 class="card-title"># Trending number 3</h5>
+          <p class="card-text">restaurant name</p>
+        </div>
+      </div>
+   </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    </div>
+    
+       
+     
+    </div>
+
+    <footer>made with ❤️ by Sujal</footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    ></script>
   </body>
 </html>

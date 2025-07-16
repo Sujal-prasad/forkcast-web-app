@@ -1,0 +1,36 @@
+
+body{
+        height:70%;
+        display: flex;
+        flex-direction: column;
+    }
+
+.card-wrapper{
+        width: 70%;
+        margin: 40px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        
+    }
+
+.card{
+        flex: 0 0 18rem;
+        border-width: 2px;
+    }
+.card:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+}
+ footer{
+        margin-top: auto;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #777;
+    }
+   
+
+

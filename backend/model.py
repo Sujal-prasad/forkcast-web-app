@@ -69,3 +69,24 @@ def recommend_random_restaurant(df=training_data, top_n=10):
     )
     top_restaurants = df.sort_values(by="model_score", ascending=False).head(top_n)
     return top_restaurants.sample(1).to_dict(orient="records")[0]  
+
+def get_trending_in_area(area_name, df=training_data):
+    
+    area_df = df[df["location"].str.contains(area_name, case=False, na=False)]
+
+    if area_df.empty:
+        return []
+
+   
+    area_df["model_score"] = (
+        -0.4 * area_df["distance_km"]
+        + 0.3 * np.log1p(area_df["total_reviews"])
+        + 0.1 * area_df["price_level"]
+        + 0.2 * area_df["rating"]
+    )
+
+    
+    top_3 = area_df.sort_values(by="model_score", ascending=False).head(3)
+
+   
+    return top_3[["name", "location", "rating", "price_level", "total_reviews", "distance_km"]].to_dict(orient="records")
