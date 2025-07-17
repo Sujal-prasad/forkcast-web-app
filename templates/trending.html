@@ -12,7 +12,6 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/trending.css') }}"
     />
-  
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
@@ -51,42 +50,30 @@
       </div>
     </nav>
 
-   <div class="card-title">
-    <h2 style="text-align:center;">
-        #Trending this week
-    </h2>
+    <div class="card-title">
+      <h2 style="text-align: center;">#Trending this week</h2>
 
-    <div class="card-wrapper">
-        <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 11.svg') }}" class="card-img-top" alt="#1 trending"  class="img-fluid"/>
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 1</h5>
-          <p class="card-text">restaurant name</p>
+      <div class="card-wrapper d-flex justify-content-center flex-wrap">
+        {% for i, restaurant in enumerate(results[:3]) %}
+        <div class="card m-3" style="width: 18rem;">
+          <img
+            src="{{ url_for('static', filename='images/restaurant ' ~ (i+11) ~ '.svg') }}"
+            class="card-img-top"
+            alt="#{{ i+1 }} trending"
+          />
+          <div class="card-body">
+            <h5 class="card-title"># Trending number {{ i + 1 }}</h5>
+            <p class="card-text">
+              <strong>{{ restaurant.name }}</strong><br />
+              Rating: {{ restaurant.rating }} ⭐<br />
+              Reviews: {{ restaurant.total_reviews }}<br />
+              Distance: {{ restaurant.distance_km }} km<br />
+              Price Level: {{ restaurant.price_level }}
+            </p>
+          </div>
         </div>
+        {% endfor %}
       </div>
-
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 12.svg') }}" class="card-img-top" alt="#2 trending" class="img-fluid"/>
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 2</h5>
-          <p class="card-text">restaurant name</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 13.svg') }}" class="card-img-top" alt="#3 trending" class="img-fluid" />
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 3</h5>
-          <p class="card-text">restaurant name</p>
-        </div>
-      </div>
-   </div>
-    
-
-    </div>
-    
-       
-     
     </div>
 
     <footer>made with ❤️ by Sujal</footer>

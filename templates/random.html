@@ -51,21 +51,33 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      
 
+    <div class="container">
       <div class="card-wrapper">
-          <h2 style="text-align:center;">The lucky restaurant is </h2>
-        <div class="card" style="width: 18rem">
-          <img src="{{ url_for('static', filename='images/restaurant 14.svg') }}" class="card-img-top" alt="random restaurant "/>
+        <h2 style="text-align: center">The lucky restaurant is</h2>
+
+        {% if restaurant %}
+        <div class="card mx-auto" style="width: 20rem">
+          <img
+            src="{{ url_for('static', filename='images/restaurant 14.svg') }}"
+            class="card-img-top"
+            alt="Random Restaurant"
+          />
           <div class="card-body">
-            <div class="card-title">random restaurant</div>
+            <h5 class="card-title">{{ restaurant.name }}</h5>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card’s content.
+              <strong>Rating:</strong> {{ restaurant.rating }} ⭐<br />
+              <strong>Distance:</strong> {{ restaurant.distance_km }} km<br />
+              <strong>Price Level:</strong> {{ restaurant.price_level }}<br />
+              <strong>Reviews:</strong> {{ restaurant.total_reviews }}
             </p>
           </div>
         </div>
+        {% else %}
+        <p class="text-center mt-4 text-danger">
+          No restaurant data available. Try searching a location first!
+        </p>
+        {% endif %}
       </div>
     </div>
 

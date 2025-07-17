@@ -6,7 +6,6 @@
   <title>restaurant recommendation</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/ranking.css') }}">
- 
 </head>
 
 <body>
@@ -28,101 +27,44 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <h2 style="text-align:center;">forkcast ranked these restaurants for you!</h2>
-    <div class="card-wrapper">
-    
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 1.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 1</h5>
-          <p class="card-text">4.2★ · ₹₹₹ · 2.1 km</p>
-        </div>
-      </div>
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">forkcast ranked these restaurants for you!</h2>
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 2.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 2</h5>
-          <p class="card-text">4.8★ · ₹₹ · 1.0 km</p>
-        </div>
+    <form method="POST" action="{{ url_for('recommendation') }}" class="mb-4">
+      <div class="input-group">
+        <input type="text" name="current_address" class="form-control" placeholder="Enter your current location" required>
+        <input type="text" name="search_query" class="form-control" placeholder="e.g., pizza, chinese, cafe" required>
+        <button type="submit" class="btn btn-primary">Get Recommendations</button>
       </div>
+    </form>
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 3.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 3</h5>
-          <p class="card-text">4.5★ · ₹ · 3.5 km</p>
-        </div>
+    {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
       </div>
+    {% endif %}
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 4.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 4</h5>
-          <p class="card-text">3.9★ · ₹₹ · 0.9 km</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for restaurant in results %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename='images/restaurant ' ~ loop.index ~ '.svg') }}" class="card-img-top" alt="Restaurant Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ restaurant.name }}</h5>
+            <p class="card-text">
+              ⭐ {{ restaurant.rating }}★<br>
+              💸 ₹{{ '₹' * restaurant.price_level if restaurant.price_level else 'N/A' }}<br>
+              📍 {{ restaurant.distance_km | round(2) }} km away<br>
+              💬 {{ restaurant.total_reviews }} reviews
+            </p>
+          </div>
         </div>
       </div>
-
-    
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 5.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 5</h5>
-          <p class="card-text">4.0★ · ₹₹₹ · 5.2 km</p>
-        </div>
-      </div>
-
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 6.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 6</h5>
-          <p class="card-text">4.7★ · ₹ · 2.3 km</p>
-        </div>
-      </div>
-
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 7.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 7</h5>
-          <p class="card-text">4.1★ · ₹₹ · 3.0 km</p>
-        </div>
-      </div>
-
-     
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 8.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 8</h5>
-          <p class="card-text">4.6★ · ₹₹ · 1.5 km</p>
-        </div>
-      </div>
-
-     
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 9.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 9</h5>
-          <p class="card-text">3.8★ · ₹ · 4.8 km</p>
-        </div>
-      </div>
-
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 10.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 10</h5>
-          <p class="card-text">4.3★ · ₹₹₹ · 2.6 km</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 
-  <footer>made with ❤️ by Sujal</footer>
+  <footer class="text-center mt-5">made with ❤️ by Sujal</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>

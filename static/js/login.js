@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "home.html";
+      window.location.href = "/home";
     } catch (error) {
       alert("Login failed: " + error.message);
       console.error(error);
