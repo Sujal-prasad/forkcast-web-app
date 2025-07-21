@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "home.html";
+      window.location.href = "/home";
     } catch (error) {
       alert("Login failed: " + error.message);
       console.error(error);
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await signInWithPopup(auth, provider);
-      window.location.href = "home.html";
+      window.location.href = "/home";
     } catch (error) {
       alert("Google Sign-In failed: " + error.message);
       console.error(error);

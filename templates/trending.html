@@ -12,8 +12,13 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/trending.css') }}"
     />
-  
+    <style>
+      #trending-form input {
+        min-width: 280px;
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
       <div class="container-fluid">
@@ -49,50 +54,94 @@
           </div>
         </div>
       </div>
+
+      <!-- 📍Trending Location Form -->
+      <form class="d-flex flex-wrap gap-2" id="trending-form" autocomplete="off">
+        <input
+          class="form-control"
+          type="text"
+          id="user-area"
+          placeholder="Enter your current area"
+          required
+        />
+        <input
+          class="form-control"
+          type="text"
+          id="restaurant-area"
+          placeholder="Enter restaurant area"
+          required
+        />
+        <button class="btn btn-secondary" type="submit">Find</button>
+      </form>
     </nav>
 
-   <div class="card-title">
-    <h2 style="text-align:center;">
-        #Trending this week
-    </h2>
-
-    <div class="card-wrapper">
-        <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 11.svg') }}" class="card-img-top" alt="#1 trending"  class="img-fluid"/>
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 1</h5>
-          <p class="card-text">restaurant name</p>
-        </div>
+    <div class="container mt-4">
+      <h2 class="text-center">#Trending This Week</h2>
+      <div class="card-wrapper d-flex flex-wrap gap-4 justify-content-center my-3">
+        <!-- 🎯 Dynamically added trending restaurants go here -->
       </div>
-
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 12.svg') }}" class="card-img-top" alt="#2 trending" class="img-fluid"/>
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 2</h5>
-          <p class="card-text">restaurant name</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/restaurant 13.svg') }}" class="card-img-top" alt="#3 trending" class="img-fluid" />
-        <div class="card-body">
-          <h5 class="card-title"># Trending number 3</h5>
-          <p class="card-text">restaurant name</p>
-        </div>
-      </div>
-   </div>
-    
-
-    </div>
-    
-       
-     
     </div>
 
-    <footer>made with ❤️ by Sujal</footer>
+    <footer class="text-center my-4">made with ❤️ by Sujal</footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("trending-form");
+        const userInput = document.getElementById("user-area");
+        const restaurantInput = document.getElementById("restaurant-area");
+        const wrapper = document.querySelector(".card-wrapper");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const user_area = userInput.value.trim();
+          const restaurant_area = restaurantInput.value.trim();
+
+          if (!user_area || !restaurant_area) {
+            alert("Please enter both areas!");
+            return;
+          }
+
+          try {
+            const res = await fetch("/trending-restaurants", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ user_area, restaurant_area }),
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || "Failed");
+
+            wrapper.innerHTML = "";
+
+            data.slice(0, 3).forEach((res, index) => {
+              const card = document.createElement("div");
+              card.className = "card";
+              card.style.width = "18rem";
+
+              const imgNum = 11 + index;
+              const imgPath = `/static/images/restaurant ${imgNum}.svg`;
+
+              card.innerHTML = `
+                <img src="${imgPath}" class="card-img-top" alt="#${index + 1} trending" />
+                <div class="card-body">
+                  <h5 class="card-title"># Trending number ${index + 1}</h5>
+                  <p class="card-text">${res.name || "Unnamed Restaurant"} · ${res.rating || "?"}★ · ₹${"₹".repeat(res.price_level || 1)}</p>
+                </div>
+              `;
+
+              wrapper.appendChild(card);
+            });
+          } catch (err) {
+            console.error("Failed:", err);
+            alert("Couldn't load trending restaurants.");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

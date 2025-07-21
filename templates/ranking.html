@@ -1,129 +1,152 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>restaurant recommendation</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/ranking.css') }}">
- 
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant Recommendation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/ranking.css') }}"
+    />
+    <style>
+      #ranking-form input {
+        min-width: 280px;
+      }
+    </style>
+  </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{{ url_for('home') }}">
-        <img src="{{ url_for('static', filename='images/forkcast.svg') }}" alt="forkcast logo" class="img-fluid" style="max-height: 40px;">
-      </a>
-      <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
-          <a class="nav-link" href="https://github.com/Sujal-prasad">
-            <img src="{{ url_for('static', filename='images/github.svg') }}" alt="github" class="img-fluid" style="max-height: 40px;">
-          </a>
-          <a class="nav-link" href="https://www.linkedin.com/in/sujal-prasad-baaa62230">
-            <img src="{{ url_for('static', filename='images/linkedin.svg') }}" alt="linkedin" class="img-fluid" style="max-height: 40px;">
-          </a>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+          <img
+            src="{{ url_for('static', filename='images/forkcast.svg') }}"
+            alt="forkcast logo"
+            class="img-fluid"
+            style="max-height: 40px"
+          />
+        </a>
+        <div class="collapse navbar-collapse">
+          <div class="navbar-nav">
+            <a class="nav-link" href="https://github.com/Sujal-prasad">
+              <img
+                src="{{ url_for('static', filename='images/github.svg') }}"
+                alt="github"
+                class="img-fluid"
+                style="max-height: 40px"
+              />
+            </a>
+            <a
+              class="nav-link"
+              href="https://www.linkedin.com/in/sujal-prasad-baaa62230"
+            >
+              <img
+                src="{{ url_for('static', filename='images/linkedin.svg') }}"
+                alt="linkedin"
+                class="img-fluid"
+                style="max-height: 40px"
+              />
+            </a>
+          </div>
         </div>
+      </div>
+
+      <!-- 🔍 Location Form -->
+      <form class="d-flex flex-wrap gap-2" id="ranking-form" autocomplete="off">
+        <input
+          class="form-control"
+          type="text"
+          id="user-location"
+          placeholder="Enter your current location"
+          required
+        />
+        <input
+          class="form-control"
+          type="text"
+          id="restaurant-area"
+          placeholder="Enter restaurant area"
+          required
+        />
+        <button class="btn btn-secondary" type="submit">Rank</button>
+      </form>
+    </nav>
+
+    <div class="container-fluid my-4">
+      <h2 class="text-center">Forkcast ranked these restaurants for you!</h2>
+      <div class="card-wrapper d-flex flex-wrap gap-4 justify-content-center">
+        <!-- 🍽 Dynamically loaded content will appear here -->
       </div>
     </div>
-  </nav>
 
-  <div class="container-fluid">
-    <h2 style="text-align:center;">forkcast ranked these restaurants for you!</h2>
-    <div class="card-wrapper">
-    
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 1.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 1</h5>
-          <p class="card-text">4.2★ · ₹₹₹ · 2.1 km</p>
-        </div>
-      </div>
+    <footer class="text-center my-3">Made with ❤️ by Sujal</footer>
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 2.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 2</h5>
-          <p class="card-text">4.8★ · ₹₹ · 1.0 km</p>
-        </div>
-      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("ranking-form");
+        const userInput = document.getElementById("user-location");
+        const restaurantInput = document.getElementById("restaurant-area");
+        const cardWrapper = document.querySelector(".card-wrapper");
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 3.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 3</h5>
-          <p class="card-text">4.5★ · ₹ · 3.5 km</p>
-        </div>
-      </div>
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const user_area = userInput.value.trim();
+          const restaurant_area = restaurantInput.value.trim();
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 4.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 4</h5>
-          <p class="card-text">3.9★ · ₹₹ · 0.9 km</p>
-        </div>
-      </div>
+          if (!user_area || !restaurant_area) {
+            alert("Please fill both locations.");
+            return;
+          }
 
-    
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 5.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 5</h5>
-          <p class="card-text">4.0★ · ₹₹₹ · 5.2 km</p>
-        </div>
-      </div>
+          try {
+            const res = await fetch("/search", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ user_area, restaurant_area }),
+            });
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 6.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 6</h5>
-          <p class="card-text">4.7★ · ₹ · 2.3 km</p>
-        </div>
-      </div>
+            const data = await res.json();
 
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 7.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 7</h5>
-          <p class="card-text">4.1★ · ₹₹ · 3.0 km</p>
-        </div>
-      </div>
+            if (res.ok) {
+              cardWrapper.innerHTML = "";
 
-     
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 8.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 8</h5>
-          <p class="card-text">4.6★ · ₹₹ · 1.5 km</p>
-        </div>
-      </div>
+              data.forEach((restaurant, index) => {
+                const card = document.createElement("div");
+                card.className = "card-custom-card";
 
-     
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 9.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 9</h5>
-          <p class="card-text">3.8★ · ₹ · 4.8 km</p>
-        </div>
-      </div>
+                const imgNum = (index % 10) + 1;
+                const imgPath = `/static/images/restaurant ${imgNum}.svg`;
 
-      
-      <div class="card-custom-card">
-        <img src="{{ url_for('static', filename='images/restaurant 10.svg') }}" class="card-img-top" alt="logo">
-        <div class="card-body">
-          <h5 class="card-title">Restaurant 10</h5>
-          <p class="card-text">4.3★ · ₹₹₹ · 2.6 km</p>
-        </div>
-      </div>
-    </div>
-  </div>
+                const cardContent = `
+                  <img src="${imgPath}" class="card-img-top" alt="logo" />
+                  <div class="card-body">
+                    <h5 class="card-title">${restaurant.name || "Unnamed Restaurant"}</h5>
+                    <p class="card-text">
+                      ${restaurant.rating ? `${restaurant.rating}★` : "No Rating"} · 
+                      ₹${"₹".repeat(restaurant.price_level || 1)} · 
+                      ${restaurant.distance ? restaurant.distance.toFixed(1) : "?"} km
+                    </p>
+                  </div>
+                `;
 
-  <footer>made with ❤️ by Sujal</footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+                card.innerHTML = cardContent;
+                cardWrapper.appendChild(card);
+              });
+            } else {
+              alert("Error: " + data.error);
+            }
+          } catch (err) {
+            console.error("Network error", err);
+            alert("Failed to fetch restaurants.");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

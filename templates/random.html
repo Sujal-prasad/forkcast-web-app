@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>forkcast random</title>
+    <title>Forkcast Random</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/random.css') }}"
     />
+    <style>
+      #random-form input {
+        min-width: 220px;
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
       <div class="container-fluid">
@@ -50,31 +54,85 @@
           </div>
         </div>
       </div>
-    </nav>
-    <div class="container">
-      
 
-      <div class="card-wrapper">
-          <h2 style="text-align:center;">The lucky restaurant is </h2>
-        <div class="card" style="width: 18rem">
-          <img src="{{ url_for('static', filename='images/restaurant 14.svg') }}" class="card-img-top" alt="random restaurant "/>
+      
+      <form class="d-flex flex-wrap gap-2" id="random-form" autocomplete="off">
+        <input
+          class="form-control"
+          type="text"
+          id="user-location"
+          placeholder="Enter your current location"
+          required
+        />
+        <input
+          class="form-control"
+          type="text"
+          id="restaurant-area"
+          placeholder="Enter restaurant area"
+          required
+        />
+        <button class="btn btn-secondary" type="submit">Surprise Me!</button>
+      </form>
+    </nav>
+
+    <div class="container my-4">
+      <div class="card-wrapper text-center">
+        <h2>The lucky restaurant is</h2>
+        <div class="card mx-auto" style="width: 18rem" id="random-card" hidden>
+          <img
+            id="random-img"
+            class="card-img-top"
+            src=""
+            alt="random restaurant"
+          />
           <div class="card-body">
-            <div class="card-title">random restaurant</div>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card’s content.
-            </p>
+            <h5 class="card-title" id="random-name">Loading...</h5>
+            <p class="card-text" id="random-desc">Fetching something tasty...</p>
           </div>
         </div>
       </div>
     </div>
 
-    <footer style="text-align: center">made with ❤️ by Sujal</footer>
+    <footer class="text-center my-3">Made with ❤️ by Sujal</footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById("random-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const user_area = document.getElementById("user-location").value.trim();
+        const restaurant_area = document.getElementById("restaurant-area").value.trim();
+
+        if (!user_area || !restaurant_area) {
+          alert("Both fields are required.");
+          return;
+        }
+
+        try {
+          const res = await fetch("/random-restaurant", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_area, restaurant_area })
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            document.getElementById("random-card").hidden = false;
+            document.getElementById("random-name").textContent = data.name || "Unnamed";
+            document.getElementById("random-desc").textContent =
+              `${data.rating || "?"}★ · ₹${"₹".repeat(data.price_level || 1)} · ${data.distance.toFixed(1)} km`;
+
+            const imgNum = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("random-img").src = `/static/images/restaurant ${imgNum}.svg`;
+          } else {
+            alert("Error: " + data.error);
+          }
+        } catch (err) {
+          alert("Network error");
+          console.error(err);
+        }
+      });
+    </script>
   </body>
 </html>

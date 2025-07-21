@@ -90,3 +90,4 @@ def get_trending_in_area(area_name, df=training_data):
 
    
     return top_3[["name", "location", "rating", "price_level", "total_reviews", "distance_km"]].to_dict(orient="records")
+

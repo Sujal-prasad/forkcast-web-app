@@ -1,10 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>forkcast homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
     <style>
       .card:hover {
         transform: translateY(-5px);
@@ -17,67 +22,88 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('home') }}">
-          <img src="{{ url_for('static', filename='images/forkcast.svg') }}" class="img-fluid" alt="Forkcast logo" width="30px">
+          <img
+            src="{{ url_for('static', filename='images/forkcast.svg') }}"
+            class="img-fluid"
+            alt="Forkcast logo"
+            width="30px"
+          />
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="https://www.linkedin.com/in/sujal-prasad-baaa62230/">
-                <img src="{{ url_for('static', filename='images/linkedin.svg') }}" class="img-fluid" width="40px" alt="LinkedIn">
+              <a
+                class="nav-link active"
+                href="https://www.linkedin.com/in/sujal-prasad-baaa62230/"
+              >
+                <img
+                  src="{{ url_for('static', filename='images/linkedin.svg') }}"
+                  class="img-fluid"
+                  width="40px"
+                  alt="LinkedIn"
+                />
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="https://github.com/Sujal-prasad">
-                <img src="{{ url_for('static', filename='images/github.svg') }}" class="img-fluid" width="40px" alt="GitHub">
+                <img
+                  src="{{ url_for('static', filename='images/github.svg') }}"
+                  class="img-fluid"
+                  width="40px"
+                  alt="GitHub"
+                />
               </a>
             </li>
           </ul>
-          <form class="d-flex" role="search" action="/search" method="GET">
-            <input class="form-control me-2" type="search" name="location" placeholder="Enter the location" aria-label="Search" required />
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
 
-    <div class="container my-4">
-      <form action="/process-address" method="post">
-        <label for="address" class="form-label"><strong>Enter your current address:</strong></label>
-        <input type="text" class="form-control mb-2" id="address" name="address" placeholder="Enter your address" required>
-        <button type="submit" class="btn btn-dark w-100">Submit</button>
-      </form>
-    </div>
-
     <div class="d-flex justify-content-center flex-wrap gap-3 my-4">
-      <div class="card" style="width: 18rem;">
-        <img src="{{ url_for('static', filename='images/firstfeature.gif') }}" class="card-img-top" alt="Restaurant ranking feature">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{ url_for('static', filename='images/firstfeature.gif') }}"
+          class="card-img-top"
+          alt="Restaurant ranking feature"
+        />
         <div class="card-body">
           <h5 class="card-title">Restaurant Ranking</h5>
           <p class="card-text">Let us rank the restaurants near you.</p>
-          <a href="{{url_for('recommendation')}}" class="btn btn-secondary">Let's go!</a>
+          <a href="{{ url_for('recommendation') }}" class="btn btn-secondary">
+            Let's go!
+          </a>
         </div>
       </div>
 
-      <div class="card" style="width: 18rem;">
-        <img src="{{ url_for('static', filename='images/second feature.gif') }}" class="card-img-top" alt="Random restaurant feature">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{ url_for('static', filename='images/second feature.gif') }}"
+          class="card-img-top"
+          alt="Random restaurant feature"
+        />
         <div class="card-body">
           <h5 class="card-title">Random Restaurant</h5>
           <p class="card-text">Let Forkcast choose a restaurant for you.</p>
-          <a href="{{url_for('random')}}" class="btn btn-secondary">Let's play!</a>
+          <a href="{{ url_for('random_restaurant') }}" class="btn btn-secondary">
+            Let's play!
+          </a>
         </div>
       </div>
 
-      <div class="card" style="width: 18rem;">
-        <img src="{{ url_for('static', filename='images/third feature.gif') }}" class="card-img-top" alt="Trending this week feature">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{ url_for('static', filename='images/third feature.gif') }}"
+          class="card-img-top"
+          alt="Trending this week feature"
+        />
         <div class="card-body">
           <h5 class="card-title">Trending This Week</h5>
-          <p class="card-text">This place is trending! Might just be your next go-to.</p>
-          <a href="{{url_for('trending')}}" class="btn btn-secondary">Go somewhere</a>
+          <p class="card-text">
+            This place is trending! Might just be your next go-to.
+          </p>
+          <a href="{{ url_for('trending') }}" class="btn btn-secondary">
+            Go somewhere
+          </a>
         </div>
       </div>
     </div>
@@ -86,6 +112,10 @@
       <p>Made with ❤️ by Sujal</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

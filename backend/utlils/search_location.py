@@ -1,42 +1,31 @@
-import requests as r
+import requests
 import urllib.parse
-import pandas as pd
 
-def search_location(query="restaurants in noida"):
-    search_encod = urllib.parse.quote(query)
+def search_location(query="restaurant"):
+    encoded_query = urllib.parse.quote(query)
     api_key = "AlzaSyDsozy2c6S85G-i3pvZI_17xxm90J4xzDU"
-    url = f"https://maps.gomaps.pro/maps/api/place/textsearch/json?query={search_encod}&key={api_key}"
-    
-    result = r.get(url).json()
-    if result["status"] == "ok" and len(result["results"]) > 0:
-        data_for_model = []
-        for item in result["results"]:
-            data = {
-                "name": item.get("name", ""),
-                "rating": item.get("rating", None),
-                "business_status": item.get("business_status", ""),
-                "latitude": item["geometry"]["location"]["lat"],
-                "longitude": item["geometry"]["location"]["lng"],
-                "place_id": item.get("place_id", ""),
-                "price_level": item.get("price_level", None),
-                "total_reviews": item.get("user_ratings_total", None),
-                "opening_hours": item.get("opening_hours", {}).get("open_now", "Unknown"),
-                "address": item.get("formatted_address", "")
+    url = f"https://maps.gomaps.pro/maps/api/place/textsearch/json?query={encoded_query}&key={api_key}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    if data["status"].lower() == "ok" and data["results"]:
+        restaurants = []
+
+        for place in data["results"]:
+            location = place.get("geometry", {}).get("location", {})
+            restaurant = {
+                "name": place.get("name"),
+                "address": place.get("formatted_address"),
+                "rating": place.get("rating", 0),
+                "user_ratings_total": place.get("user_ratings_total", 0),
+                "latitude": location.get("lat"),
+                "longitude": location.get("lng"),
+                "place_id": place.get("place_id"),
+                "price_level": place.get("price_level", 2),
             }
-            data_for_model.append(data)
+            restaurants.append(restaurant)
 
-        
-        return data_for_model
+        return restaurants
     else:
-        raise Exception("Failed to fetch data from Google Maps API.")
-
-
-def main():
-    try:
-        df = search_location()
-        print(pd.DataFrame(df).head())
-    except Exception as e:
-        print(f"Error: {e}")
-
-if __name__ == "__main__":
-    main()
+        raise Exception("No results found or invalid API response")
