@@ -55,19 +55,19 @@
         </div>
       </div>
 
-      <!-- 📍Trending Location Form -->
+      
       <form class="d-flex flex-wrap gap-2" id="trending-form" autocomplete="off">
         <input
           class="form-control"
           type="text"
-          id="user-area"
+          id="user_area"
           placeholder="Enter your current area"
           required
         />
         <input
           class="form-control"
           type="text"
-          id="restaurant-area"
+          id="restaurant_area"
           placeholder="Enter restaurant area"
           required
         />
@@ -78,7 +78,7 @@
     <div class="container mt-4">
       <h2 class="text-center">#Trending This Week</h2>
       <div class="card-wrapper d-flex flex-wrap gap-4 justify-content-center my-3">
-        <!-- 🎯 Dynamically added trending restaurants go here -->
+        
       </div>
     </div>
 
@@ -90,8 +90,8 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("trending-form");
-        const userInput = document.getElementById("user-area");
-        const restaurantInput = document.getElementById("restaurant-area");
+        const userInput = document.getElementById("user_area");
+        const restaurantInput = document.getElementById("restaurant_area");
         const wrapper = document.querySelector(".card-wrapper");
 
         form.addEventListener("submit", async (e) => {

@@ -60,15 +60,15 @@
         <input
           class="form-control"
           type="text"
-          id="user-location"
+          id="user_area"
           placeholder="Enter your current location"
           required
         />
         <input
           class="form-control"
           type="text"
-          id="restaurant-area"
-          placeholder="Enter restaurant area"
+          id="restaurant_area"
+          placeholder="restaurants near area"
           required
         />
         <button class="btn btn-secondary" type="submit">Surprise Me!</button>
@@ -99,8 +99,8 @@
     <script>
       document.getElementById("random-form").addEventListener("submit", async (e) => {
         e.preventDefault();
-        const user_area = document.getElementById("user-location").value.trim();
-        const restaurant_area = document.getElementById("restaurant-area").value.trim();
+        const user_area = document.getElementById("user_area").value.trim();
+        const restaurant_area = document.getElementById("restaurant_area").value.trim();
 
         if (!user_area || !restaurant_area) {
           alert("Both fields are required.");

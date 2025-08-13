@@ -3,7 +3,7 @@ import urllib.parse
 
 def current_location_user(address):
     encoded_address = urllib.parse.quote(address)
-    api_key = "AlzaSyDsozy2c6S85G-i3pvZI_17xxm90J4xzDU"
+    api_key = "AlzaSyMp41IhmtA6FFbzmmhroi24_kZEN8W1vji"
     url = f"https://maps.gomaps.pro/maps/api/geocode/json?address={encoded_address}&key={api_key}"
 
     response = requests.get(url)

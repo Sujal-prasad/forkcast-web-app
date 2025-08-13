@@ -3,7 +3,7 @@ import urllib.parse
 
 def search_location(query="restaurant"):
     encoded_query = urllib.parse.quote(query)
-    api_key = "AlzaSyDsozy2c6S85G-i3pvZI_17xxm90J4xzDU"
+    api_key = "AlzaSyMp41IhmtA6FFbzmmhroi24_kZEN8W1vji"
     url = f"https://maps.gomaps.pro/maps/api/place/textsearch/json?query={encoded_query}&key={api_key}"
 
     response = requests.get(url)
